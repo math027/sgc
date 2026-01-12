@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestão de Contratos</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 h-screen flex overflow-hidden transition-colors duration-300">
+
+    <aside class="w-64 bg-slate-900 text-white flex flex-col shadow-2xl transition-all duration-300 z-20">
+        <div class="h-16 flex items-center justify-center border-b border-slate-800">
+            <h1 class="text-xl font-bold tracking-wider text-blue-400">SG<span class="text-white font-light">C</span></h1>
+        </div>
+        
+        <div class="p-4 border-b border-slate-800 flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-500 to-cyan-400 p-0.5">
+                <img src="foto.jpeg" alt="Avatar" class="w-full h-full rounded-full object-cover border-2 border-slate-900">
+            </div>
+            <div>
+                <p class="text-sm font-semibold">Matheus Souza</p>
+                <p class="text-xs text-emerald-400 flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span> Online</p>
+            </div>
+        </div>
+
+        <nav class="flex-1 overflow-y-auto py-4">
+            <ul class="space-y-1 px-3">
+                <li class="text-xs uppercase text-slate-500 font-semibold px-3 mb-2">Principal</li>
+                <li>
+                    <a href="#" class="flex items-center p-3 text-white bg-blue-600 rounded-lg shadow-lg shadow-blue-500/30 transition-all">
+                        <i class="fas fa-home w-6 text-center"></i>
+                        <span class="ml-2 font-medium">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-3 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors">
+                        <i class="fas fa-file-contract w-6 text-center"></i>
+                        <span class="ml-2">Adicionar Contrato</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-3 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors">
+                        <i class="fas fa-list w-6 text-center"></i>
+                        <span class="ml-2">Listar Contratos</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="flex items-center p-3 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors">
+                        <i class="fas fa-users w-6 text-center"></i>
+                        <span class="ml-2">Testemunhas</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="flex items-center p-3 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors">
+                        <i class="fas fa-signature w-6 text-center"></i>
+                        <span class="ml-2">ZapSign</span>
+                    </a>
+                </li>
+
+                <li class="text-xs uppercase text-slate-500 font-semibold px-3 mt-6 mb-2">Configurações</li>
+                <li>
+                    <a href="#" class="flex items-center p-3 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors">
+                        <i class="fas fa-bell w-6 text-center"></i>
+                        <span class="ml-2">Notificações</span>
+                        <span class="ml-auto bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">3</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-3 text-slate-400 hover:text-red-400 hover:bg-slate-800 rounded-lg transition-colors">
+                        <i class="fas fa-sign-out-alt w-6 text-center"></i>
+                        <span class="ml-2">Sair</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="flex-1 flex flex-col overflow-hidden relative">
+        <header class="h-16 bg-white dark:bg-slate-800 shadow-sm flex items-center justify-between px-6 z-10 transition-colors duration-300">
+            <button class="text-slate-500 hover:text-blue-600 focus:outline-none dark:text-slate-400 dark:hover:text-blue-400">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+            <div class="flex items-center space-x-6">
+                
+                <button id="theme-toggle" class="text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-yellow-400 transition-colors focus:outline-none">
+                    <i class="fas fa-moon text-lg" id="theme-icon"></i>
+                </button>
+
+                <div class="relative">
+                    <i class="far fa-bell text-slate-500 dark:text-slate-400 text-lg cursor-pointer hover:text-blue-600 transition-colors"></i>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full border border-white dark:border-slate-800">3</span>
+                </div>
+                <div class="flex items-center text-sm font-medium text-slate-600 dark:text-slate-300">
+                    <span class="text-slate-400 mr-2">Painel /</span> Dashboard
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 dark:bg-slate-900 p-6 transition-colors duration-300">
+            
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Visão Geral</h2>
+                <p class="text-slate-500 dark:text-slate-400 text-sm">Acompanhamento de contratos e status.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                
+                <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-6 border-l-4 border-blue-500 hover:shadow-lg transition-all duration-300 relative overflow-hidden group">
+                    <div class="flex justify-between items-start z-10 relative">
+                        <div>
+                            <p class="text-xs font-bold text-blue-500 uppercase tracking-wide mb-1">Contratos a Gerar</p>
+                            <h3 class="text-3xl font-bold text-slate-800 dark:text-white">12</h3>
+                        </div>
+                        <div class="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-colors">
+                            <i class="fas fa-plus-circle text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-xs text-slate-400">
+                        <span class="text-blue-500 font-bold"><i class="fas fa-arrow-up"></i> 2</span> novos hoje
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-6 border-l-4 border-orange-500 hover:shadow-lg transition-all duration-300 relative overflow-hidden group">
+                    <div class="flex justify-between items-start z-10 relative">
+                        <div>
+                            <p class="text-xs font-bold text-orange-500 uppercase tracking-wide mb-1">Pendentes de Envio</p>
+                            <h3 class="text-3xl font-bold text-slate-800 dark:text-white">5</h3>
+                        </div>
+                        <div class="p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-colors">
+                            <i class="fas fa-paper-plane text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-xs text-slate-400">
+                        Aguardando revisão
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-6 border-l-4 border-emerald-500 hover:shadow-lg transition-all duration-300 relative overflow-hidden group">
+                    <div class="flex justify-between items-start z-10 relative">
+                        <div>
+                            <p class="text-xs font-bold text-emerald-500 uppercase tracking-wide mb-1">Assinados ZapSign</p>
+                            <h3 class="text-3xl font-bold text-slate-800 dark:text-white">148</h3>
+                        </div>
+                        <div class="p-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
+                            <i class="fas fa-check-double text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-xs text-slate-400">
+                        <span class="text-emerald-500 font-bold">98%</span> taxa de sucesso
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-6 border-l-4 border-red-500 hover:shadow-lg transition-all duration-300 relative overflow-hidden group">
+                    <div class="flex justify-between items-start z-10 relative">
+                        <div>
+                            <p class="text-xs font-bold text-red-500 uppercase tracking-wide mb-1">Pendentes Assinatura</p>
+                            <h3 class="text-3xl font-bold text-slate-800 dark:text-white">8</h3>
+                        </div>
+                        <div class="p-3 bg-red-50 dark:bg-red-900/20 rounded-lg text-red-500 group-hover:bg-red-500 group-hover:text-white transition-colors">
+                            <i class="fas fa-clock text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-xs text-slate-400">
+                        Atraso médio: <span class="font-medium text-red-400">2 dias</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm col-span-2 transition-colors duration-300">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-lg font-bold text-slate-800 dark:text-white">Contratos Gerados por Usuário</h3>
+                        <button class="text-sm text-blue-500 hover:underline">Ver Relatório Completo</button>
+                    </div>
+                    <div class="relative h-72 w-full">
+                        <canvas id="userContractsChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm col-span-1 transition-colors duration-300">
+                    <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-4">Últimas Atividades</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center p-3 hover:bg-gray-50 dark:hover:bg-slate-700/50 rounded-lg transition-colors cursor-pointer border border-transparent hover:border-gray-100 dark:hover:border-slate-700">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 font-bold text-xs">MV</div>
+                            <div class="ml-3">
+                                <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">Matheus Souza</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Gerou contrato #4092</p>
+                            </div>
+                            <span class="ml-auto text-xs text-slate-400">2min</span>
+                        </div>
+
+                        <div class="flex items-center p-3 hover:bg-gray-50 dark:hover:bg-slate-700/50 rounded-lg transition-colors cursor-pointer border border-transparent hover:border-gray-100 dark:hover:border-slate-700">
+                            <div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400 font-bold text-xs">ZS</div>
+                            <div class="ml-3">
+                                <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">ZapSign Webhook</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Contrato #4088 Assinado</p>
+                            </div>
+                            <span class="ml-auto text-xs text-slate-400">15min</span>
+                        </div>
+
+                        <div class="flex items-center p-3 hover:bg-gray-50 dark:hover:bg-slate-700/50 rounded-lg transition-colors cursor-pointer border border-transparent hover:border-gray-100 dark:hover:border-slate-700">
+                            <div class="w-10 h-10 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600 dark:text-orange-400 font-bold text-xs">JS</div>
+                            <div class="ml-3">
+                                <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">Leonardo</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Enviou para revisão</p>
+                            </div>
+                            <span class="ml-auto text-xs text-slate-400">1h</span>
+                        </div>
+                        
+                        <div class="flex items-center p-3 hover:bg-gray-50 dark:hover:bg-slate-700/50 rounded-lg transition-colors cursor-pointer border border-transparent hover:border-gray-100 dark:hover:border-slate-700">
+                            <div class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400 font-bold text-xs">AD</div>
+                            <div class="ml-3">
+                                <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">Emmily Neves</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Novo usuário registrado</p>
+                            </div>
+                            <span class="ml-auto text-xs text-slate-400">3h</span>
+                        </div>
+                    </div>
+                    <button class="w-full mt-4 py-2 text-sm text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                        Carregar Mais
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm overflow-hidden mb-6 transition-colors duration-300">
+                <div class="p-6 border-b border-gray-100 dark:border-slate-700 flex justify-between items-center">
+                    <h3 class="text-lg font-bold text-slate-800 dark:text-white">Contratos Recentes</h3>
+                    <div class="flex space-x-2">
+                         <input type="text" placeholder="Pesquisar..." class="text-sm border border-gray-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-1.5 focus:outline-none focus:border-blue-500">
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-50 dark:bg-slate-700/50 text-slate-500 dark:text-slate-400 text-xs uppercase tracking-wider">
+                                <th class="p-4 font-semibold">Número</th>
+                                <th class="p-4 font-semibold">Título / Cliente</th>
+                                <th class="p-4 font-semibold">Responsável</th>
+                                <th class="p-4 font-semibold">Vencimento</th>
+                                <th class="p-4 font-semibold">Status</th>
+                                <th class="p-4 font-semibold text-right">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm divide-y divide-gray-100 dark:divide-slate-700">
+                            <tr class="hover:bg-gray-50 dark:hover:bg-slate-700/30 transition-colors">
+                                <td class="p-4 font-medium text-slate-700 dark:text-slate-300">#4092</td>
+                                <td class="p-4">
+                                    <div class="font-medium text-slate-800 dark:text-white">Manutenção de Servidores</div>
+                                    <div class="text-xs text-slate-500 dark:text-slate-400">Tech Solutions Ltda</div>
+                                </td>
+                                <td class="p-4">
+                                    <div class="flex items-center">
+                                        <img src="foto.jpeg" class="w-6 h-6 rounded-full mr-2">
+                                        <span class="text-slate-600 dark:text-slate-300">Matheus S.</span>
+                                    </div>
+                                </td>
+                                <td class="p-4 text-slate-600 dark:text-slate-400">15/02/2026</td>
+                                <td class="p-4">
+                                    <span class="bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 py-1 px-3 rounded-full text-xs font-semibold">A Gerar</span>
+                                </td>
+                                <td class="p-4 text-right">
+                                    <button class="text-slate-400 hover:text-blue-600 px-2"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-slate-700/30 transition-colors">
+                                <td class="p-4 font-medium text-slate-700 dark:text-slate-300">#4091</td>
+                                <td class="p-4">
+                                    <div class="font-medium text-slate-800 dark:text-white">Consultoria de Redes</div>
+                                    <div class="text-xs text-slate-500 dark:text-slate-400">Grupo Alpha</div>
+                                </td>
+                                <td class="p-4">
+                                    <div class="flex items-center">
+                                        <div class="w-6 h-6 rounded-full bg-orange-200 text-orange-700 flex items-center justify-center text-xs mr-2 font-bold">J</div>
+                                        <span class="text-slate-600 dark:text-slate-300">Leonardo</span>
+                                    </div>
+                                </td>
+                                <td class="p-4 text-slate-600 dark:text-slate-400">12/02/2026</td>
+                                <td class="p-4">
+                                    <span class="bg-orange-100 dark:bg-orange-900/40 text-orange-700 dark:text-orange-300 py-1 px-3 rounded-full text-xs font-semibold">Pendente Envio</span>
+                                </td>
+                                <td class="p-4 text-right">
+                                    <button class="text-slate-400 hover:text-blue-600 px-2"><i class="fas fa-eye"></i></button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-slate-700/30 transition-colors">
+                                <td class="p-4 font-medium text-slate-700 dark:text-slate-300">#4088</td>
+                                <td class="p-4">
+                                    <div class="font-medium text-slate-800 dark:text-white">Licenciamento de Software</div>
+                                    <div class="text-xs text-slate-500 dark:text-slate-400">Prefeitura Viana</div>
+                                </td>
+                                <td class="p-4">
+                                    <div class="flex items-center">
+                                        <img src="foto.jpeg" class="w-6 h-6 rounded-full mr-2">
+                                        <span class="text-slate-600 dark:text-slate-300">Matheus S.</span>
+                                    </div>
+                                </td>
+                                <td class="p-4 text-slate-600 dark:text-slate-400">10/01/2026</td>
+                                <td class="p-4">
+                                    <span class="bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 py-1 px-3 rounded-full text-xs font-semibold">Assinado</span>
+                                </td>
+                                <td class="p-4 text-right">
+                                    <button class="text-slate-400 hover:text-blue-600 px-2"><i class="fas fa-download"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <footer class="text-center text-xs text-slate-400 py-4">
+                &copy; 2026 SGC - Sistema de Gestão de Contratos
+            </footer>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
