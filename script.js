@@ -15,7 +15,10 @@ if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.match
 }
 
 // Toggle function
-themeToggleBtn.addEventListener('click', () => {
+themeToggleBtn.addEventListener('click', (e) => {
+    // Evita comportamento padrão se for tag <a>
+    e.preventDefault(); 
+    
     if (htmlElement.classList.contains('dark')) {
         htmlElement.classList.remove('dark');
         localStorage.theme = 'light';
@@ -125,3 +128,17 @@ function updateChartTheme() {
 
 // Inicializa o gráfico
 initChart();
+
+// --- Sidebar Toggle Logic ---
+const sidebar = document.getElementById('sidebar');
+const sidebarToggleBtn = document.getElementById('sidebarToggle');
+
+sidebarToggleBtn.addEventListener('click', () => {
+    // Alterna a classe 'collapsed' no CSS
+    sidebar.classList.toggle('collapsed');
+    
+    // Dispara evento para o gráfico se reajustar
+    setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+    }, 300);
+});
