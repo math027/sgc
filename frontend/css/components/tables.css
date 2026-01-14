@@ -1,0 +1,68 @@
+/* --- Tabela --- */
+.table-container {
+    background-color: var(--bg-surface);
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.table-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* .search-input movido para forms.css */
+
+.custom-table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+.custom-table th {
+    background-color: var(--bg-body);
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 1rem;
+}
+
+.custom-table td {
+    padding: 1rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.custom-table tr:hover {
+    background-color: var(--bg-body);
+}
+
+.cell-primary {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.cell-title div:first-child {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+.cell-title div:last-child {
+    font-size: 0.75rem;
+}
+
+.cell-user {
+    display: flex;
+    align-items: center;
+}
+.cell-user img, .cell-user .user-initials {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}

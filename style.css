@@ -93,18 +93,19 @@ body {
     height: var(--header-height);
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 1rem;
+    /* justify-content: space-between; */
+    padding: 0 2rem;
     border-bottom: 1px solid var(--sidebar-border);
 }
 
-.sidebar.collapsed .sidebar-header {
+/* .sidebar.collapsed .sidebar-header {
     justify-content: center;
-}
+} */
 
 .sidebar-logo {
     font-size: 1.25rem;
     font-weight: 700;
+    padding-left: 6vh;
     letter-spacing: 0.05em;
     color: #60a5fa; /* blue-400 */
 }
@@ -124,7 +125,7 @@ body {
 
 /* Perfil na Sidebar */
 .user-profile {
-    padding: 1rem;
+    padding: 1.25rem;
     border-bottom: 1px solid var(--sidebar-border);
     display: flex;
     align-items: center;

@@ -1,0 +1,24 @@
+/* --- Reset e Base --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+/* Utilitários de Visibilidade */
+.hidden { display: none !important; }
+
+/* Animações */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .5; }
+}

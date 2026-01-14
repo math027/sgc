@@ -1,0 +1,31 @@
+/* --- Header Superior --- */
+.top-header {
+    height: var(--header-height);
+    background-color: var(--bg-surface);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    z-index: 10;
+    transition: background-color var(--transition-speed);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-left: auto; /* Empurra para direita */
+}
+
+.breadcrumb {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.breadcrumb span {
+    color: var(--text-secondary);
+    opacity: 0.7;
+    margin-right: 0.5rem;
+}

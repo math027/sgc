@@ -1,0 +1,25 @@
+.user-initials {
+    background-color: #fed7aa; /* orange-200 */
+    color: #c2410c; /* orange-700 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.bg-status-blue { background-color: #dbeafe; color: #1d4ed8; }
+.bg-status-orange { background-color: #ffedd5; color: #c2410c; }
+.bg-status-emerald { background-color: #d1fae5; color: #047857; }
+
+.dark .bg-status-blue { background-color: rgba(30, 58, 138, 0.4); color: #93c5fd; }
+.dark .bg-status-orange { background-color: rgba(124, 45, 18, 0.4); color: #fdba74; }
+.dark .bg-status-emerald { background-color: rgba(6, 78, 59, 0.4); color: #6ee7b7; }

@@ -1,0 +1,102 @@
+/* --- Dashboard Widgets (Cards) --- */
+.stat-card {
+    background-color: var(--bg-surface);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    border-left: 4px solid transparent;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Variantes de Card */
+.card-blue { border-left-color: #3b82f6; }
+.card-orange { border-left-color: #f97316; }
+.card-emerald { border-left-color: #10b981; }
+.card-red { border-left-color: #ef4444; }
+.card-purple { border-left-color: #a855f7; }
+
+.stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 10;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    margin-bottom: 0.25rem;
+}
+
+/* Cores de texto para labels */
+.text-blue { color: #3b82f6; }
+.text-orange { color: #f97316; }
+.text-emerald { color: #10b981; }
+.text-red { color: #ef4444; }
+.text-purple { color: #a855f7; }
+
+.stat-value {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.stat-icon {
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    background-color: rgba(59, 130, 246, 0.1); /* blue-50 approx */
+    color: #3b82f6;
+    font-size: 1.25rem;
+}
+
+.dark .stat-icon { background-color: rgba(30, 58, 138, 0.2); }
+
+/* Cores específicas de ícones */
+.icon-blue { color: #3b82f6; background-color: #eff6ff; }
+.icon-orange { color: #f97316; background-color: #fff7ed; }
+.icon-emerald { color: #10b981; background-color: #ecfdf5; }
+.icon-red { color: #ef4444; background-color: #fef2f2; }
+.icon-purple { color: #a855f7; background-color: #faf5ff; }
+
+.dark .icon-blue { background-color: rgba(59, 130, 246, 0.15); }
+.dark .icon-orange { background-color: rgba(249, 115, 22, 0.15); }
+.dark .icon-emerald { background-color: rgba(16, 185, 129, 0.15); }
+.dark .icon-red { background-color: rgba(239, 68, 68, 0.15); }
+.dark .icon-purple { background-color: rgba(168, 85, 247, 0.15); }
+
+.stat-footer {
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* Containers de conteudo */
+.chart-container, .activity-container {
+    background-color: var(--bg-surface);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.section-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
