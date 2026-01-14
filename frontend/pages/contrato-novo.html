@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGC - Novo Contrato</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="../css/base/reset.css">
+    <link rel="stylesheet" href="../css/base/variables.css">
+    <link rel="stylesheet" href="../css/base/typography.css">
+
+    <link rel="stylesheet" href="../css/layout/grid.css">
+    <link rel="stylesheet" href="../css/layout/sidebar.css">
+    <link rel="stylesheet" href="../css/layout/header.css">
+    <link rel="stylesheet" href="../css/layout/footer.css">
+
+    <link rel="stylesheet" href="../css/components/cards.css">
+    <link rel="stylesheet" href="../css/components/buttons.css">
+    <link rel="stylesheet" href="../css/components/tables.css">
+    <link rel="stylesheet" href="../css/components/forms.css">
+    <link rel="stylesheet" href="../css/components/badges.css">
+    <link rel="stylesheet" href="../css/components/modal.css">
+    
+    <link rel="stylesheet" href="../css/pages/contrato-novo.css">
+</head>
+<body>
+
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <button id="sidebarToggle" class="sidebar-toggle-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h1 class="sidebar-logo sidebar-text">SG<span style="color: white; font-weight: 300;">C</span></h1>
+        </div>
+        
+        <div class="user-profile">
+            <div class="avatar-container">
+                <img src="../assets/images/avatar-default.jpeg" alt="Avatar" class="avatar-img"> </div>
+            <div class="user-info sidebar-text">
+                <p class="user-name">Matheus Souza</p>
+                <p class="user-status"><span class="status-dot"></span> Online</p>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-category sidebar-text">Principal</li>
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">
+                        <i class="fas fa-home nav-icon"></i>
+                        <span class="nav-text sidebar-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="fas fa-file-contract nav-icon"></i>
+                        <span class="nav-text sidebar-text">Adicionar Contrato</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-list nav-icon"></i>
+                        <span class="nav-text sidebar-text">Listar Contratos</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-users nav-icon"></i>
+                        <span class="nav-text sidebar-text">Testemunhas</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-signature nav-icon"></i>
+                        <span class="nav-text sidebar-text">ZapSign</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-question-circle nav-icon"></i>
+                        <span class="nav-text sidebar-text">Ajuda</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-cog nav-icon"></i>
+                        <span class="nav-text sidebar-text">Configurações</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" id="theme-toggle" class="nav-link" style="cursor: pointer;">
+                        <i class="fas fa-moon nav-icon" id="theme-icon"></i>
+                        <span class="nav-text sidebar-text">Alterar Tema</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link danger">
+                        <i class="fas fa-sign-out-alt nav-icon"></i>
+                        <span class="nav-text sidebar-text">Sair</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <div class="app-container">
+        <header class="top-header">
+            <div></div> 
+            <div class="header-right">
+                <div class="breadcrumb"><span>Contratos /</span> Novo</div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            
+            <div class="page-title">
+                <h2>Solicitações Recebidas</h2>
+                <p>Formulários preenchidos via Agidesk/Sistema Externo.</p>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h3 class="section-title">Fila de Processamento</h3>
+                    <div><input type="text" placeholder="Buscar solicitante..." class="search-input"></div>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="custom-table" id="requestsTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Empresa Contratada</th>
+                                <th>Data Solicitação</th>
+                                <th>Tipo Formulário</th>
+                                <th>Status</th>
+                                <th style="text-align: right;">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="requestsTableBody">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <div id="detailsModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h3>Dados da Solicitação</h3>
+                <button class="close-modal-btn" onclick="closeDetailsModal()"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="form-view-header">
+                    <h4 id="detailFormType">Jurídico > PJ Fixo</h4>
+                    <span class="status-badge bg-status-blue" id="detailStatus">Pendente</span>
+                </div>
+
+                <div class="form-view-grid">
+                    <div class="form-group-view">
+                        <label>Data da solicitação:</label>
+                        <p id="d_dataSolicitacao">--/--/----</p>
+                    </div>
+                    <div class="form-group-view">
+                        <label>Data de início do contrato:</label>
+                        <p id="d_dataInicio">--/--/----</p>
+                    </div>
+                    
+                    <div class="form-group-view full-width">
+                        <label>Número do contrato administrativo:</label>
+                        <p id="d_numContrato">---</p>
+                    </div>
+
+                    <div class="form-group-view">
+                        <label>Nome da empresa contratante:</label>
+                        <p id="d_contratante">---</p>
+                    </div>
+                    <div class="form-group-view">
+                        <label>Nome da empresa contratada:</label>
+                        <p id="d_contratada">---</p>
+                    </div>
+
+                    <div class="form-group-view">
+                        <label>CNPJ da empresa contratada:</label>
+                        <p id="d_cnpj">---</p>
+                    </div>
+                    <div class="form-group-view">
+                        <label>Endereço da empresa contratada:</label>
+                        <p id="d_endereco">---</p>
+                    </div>
+
+                    <div class="form-group-view full-width">
+                        <label>Nome completo do representante:</label>
+                        <p id="d_representante">---</p>
+                    </div>
+
+                    <div class="form-group-view">
+                        <label>E-mail para envio:</label>
+                        <p id="d_email">---</p>
+                    </div>
+                    <div class="form-group-view">
+                        <label>Nº WhatsApp do representante:</label>
+                        <p id="d_whatsapp">---</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-block" onclick="closeDetailsModal()" style="width: auto; margin-top:0;">Fechar</button>
+                <button class="btn-generate" id="btnGenerateFromDetails">
+                    <i class="fas fa-magic"></i> Gerar Minuta
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="templateModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Selecionar Modelo de Contrato</h3>
+                <button class="close-modal-btn" onclick="closeTemplateModal()"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="modal-body">
+                <p class="modal-subtitle">Escolha qual template utilizar para <strong id="modalClientName">---</strong>.</p>
+                <div class="template-grid">
+                    <div class="template-card" onclick="selectTemplate('prestacao_servicos_pj')">
+                        <div class="tpl-icon"><i class="fas fa-file-signature"></i></div>
+                        <h4>PJ Fixo (Padrão)</h4>
+                        <p>Minuta padrão para contratos PJ fixos mensais.</p>
+                    </div>
+                    <div class="template-card" onclick="selectTemplate('aditivo')">
+                        <div class="tpl-icon"><i class="fas fa-plus"></i></div>
+                        <h4>Termo Aditivo</h4>
+                        <p>Caso seja uma renovação de contrato existente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/core/app.js"></script>
+    <script src="../js/components/sidebar.js"></script>
+    
+    <script src="../js/pages/contrato-novo.js"></script>
+
+</body>
+</html>
